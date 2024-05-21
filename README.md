@@ -7,7 +7,7 @@
 - Initial release (pending)
 
 ##
-This [Aseprite](https://aseprite.org) extension allows you to apply "easing" functions to the timimg of animation frames
+This [Aseprite](https://aseprite.org) extension allows you to apply "easing" functions to the timing of animation frames
 
 ## Requirements
 
