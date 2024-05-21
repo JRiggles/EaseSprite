@@ -55,7 +55,7 @@ Individual frame times are rounded up to the nearest millisecond, which means th
 - "Ease In Sine"
 - "Ease Out Sine"
 - "Ease In Out Sine"
-- "Linear" (effectively no easing; this is functionally identical to selecting "Frame > Constant Frame Rate")
+- "Linear" (effectively no easing; this is functionally identical to selecting `Frame > Constant Frame Rate`)
 
 > [!NOTE]
 > You can learn more about these easing functions at [easings.net](https://easings.net)
