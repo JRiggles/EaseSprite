@@ -9,6 +9,22 @@
 ##
 This [Aseprite](https://aseprite.org) extension allows you to apply "easing" functions to the timing of animation frames
 
+
+## Example
+
+The sprite below consists of 24 frames, and the position of the red ball is moved up by 1px each frame
+
+> [!IMPORTANT]
+> This extension won't animate your sprites for you, it just applies easing to the *duration* of each frame
+
+<img src="screenshots/linear.gif" />
+
+#### Linear Easing (a.k.a no easing :wink:)
+
+<img src="screenshots/easeInQuad.gif" />
+
+#### Ease In Quad
+
 ## Requirements
 
 This extension has been tested on both Windows and Mac OS (specifically, Windows 11 and Mac OS Sonoma 14.3.1)
@@ -19,11 +35,24 @@ It is intended to run on Aseprite version 1.3 or later and requires API version 
 
 Navigate to `Frame > Easing`, select the desired easing function, the desired total duration (in milliseconds), and the frames to which easing should be applied.
 
-The duration of each frame in the sprite will be adjusted accordingly such that the chosen easing function will play out over the given total duration.
+<img src="screenshots/menu selection.png" />
+
+You can apply the easing function to all frames in the sprite, the currently selected range of frames, a range of frames by their indices, or by an existing tag.
+
+The **Tag** selection option will be disabled if the active sprite has no tags.
+
+The duration of each frame in the selection will be adjusted accordingly such that the chosen easing function will play out over the given total duration.
+
+
+
+<img src="screenshots/main dialog.png" />
+
 
 ### Limitations
 
 The active sprite must have at least two (2) frames in order for an easing function to be applied; sprites with more frames will result in smoother easing
+
+You must select at least two (2) framse when selecting a range of frames
 
 The shortest possible duration for a single frame is 1 millisecond
 
@@ -57,8 +86,14 @@ Individual frame times are rounded up to the nearest millisecond, which means th
 - "Ease In Out Sine"
 - "Linear" (effectively no easing; this is functionally identical to selecting `Frame > Constant Frame Rate`)
 
+<img src="screenshots/easing menu.png" />
+
 > [!NOTE]
 > You can learn more about these easing functions at [easings.net](https://easings.net)
+
+When the `Add Easing Tag` option is checked (default) the selected frames will be tagged with the name of the chosen easing function like so:
+
+<img src="screenshots/easing tag.png" />
 
 ## Installation
 ```
