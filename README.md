@@ -43,24 +43,7 @@ The **Tag** selection option will be disabled if the active sprite has no tags.
 
 The duration of each frame in the selection will be adjusted accordingly such that the chosen easing function will play out over the given total duration.
 
-
-
 <img src="screenshots/main dialog.png" />
-
-
-### Limitations
-
-The active sprite must have at least two (2) frames in order for an easing function to be applied; sprites with more frames will result in smoother easing
-
-You must select at least two (2) framse when selecting a range of frames
-
-The shortest possible duration for a single frame is 1 millisecond
-
-The longest possible duration for a single frame is 65,535 milliseconds (just over 65 seconds)
-
-Individual frame times are rounded up to the nearest millisecond, which means the animation will complete in *approximately* the specified number of millseconds, but maybe not exactly
-
-> This means that the longest possible animation duration is `65535 * n` where `n` is the number of frames in the animation and no easing (i.e. "Linear" easing) is applied
 
 ### The following easing functions are supported:
 - "Ease In Circ"
@@ -94,6 +77,20 @@ Individual frame times are rounded up to the nearest millisecond, which means th
 When the `Add Easing Tag` option is checked (default) the selected frames will be tagged with the name of the chosen easing function like so:
 
 <img src="screenshots/easing tag.png" />
+
+### Limitations
+
+The active sprite must have at least two (2) frames in order for an easing function to be applied; sprites with more frames will result in smoother easing
+
+You must select at least two (2) framse when selecting a range of frames
+
+The shortest possible duration for a single frame is 1 millisecond
+
+The longest possible duration for a single frame is 65,535 milliseconds (just over 65 seconds)
+
+Individual frame times are rounded up to the nearest millisecond, which means the animation will complete in *approximately* the specified number of millseconds, but maybe not exactly
+
+> This means that the longest possible animation duration is `65535 * n` where `n` is the number of frames in the animation and no easing (i.e. "Linear" easing) is applied
 
 ## Installation
 
