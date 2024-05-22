@@ -1,10 +1,10 @@
 # EaseSprite
 
 #### An Aseprite extension
-<!-- *current release: [v1.0.0](https://sudo-whoami.itch.io/EaseSprite)* -->
+*current release: [v1.0.0](https://sudo-whoami.itch.io/EaseSprite)*
 
 ## Latest Changes
-- Initial release (pending)
+- Initial release
 
 ##
 This [Aseprite](https://aseprite.org) extension allows you to apply "easing" functions to the timing of animation frames
@@ -96,9 +96,7 @@ When the `Add Easing Tag` option is checked (default) the selected frames will b
 <img src="screenshots/easing tag.png" />
 
 ## Installation
-```
-TODO
-```
-<!-- You can download this extension from [itch.io](https://sudo-whoami.itch.io/EaseSprite) as a "pay what you want" tool -->
+
+You can download this extension from [itch.io](https://sudo-whoami.itch.io/EaseSprite) as a "pay what you want" tool
 
 If you find this extension useful, please consider donating via itch.io to support further development! &hearts;
