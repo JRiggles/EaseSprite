@@ -27,7 +27,7 @@ The sprite below consists of 24 frames, and the position of the red ball is move
 
 ## Requirements
 
-This extension has been tested on both Windows and Mac OS (specifically, Windows 11 and Mac OS Sonoma 14.3.1)
+This extension has been tested on both Windows and Mac OS (specifically, Windows 11 and Mac OS Sonoma 14.4.1)
 
 It is intended to run on Aseprite version 1.3 or later and requires API version 1.3-rc5 (as long as you have the latest version of Aseprite, you should be fine!)
 
