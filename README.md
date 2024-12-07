@@ -24,7 +24,7 @@ The sprite below consists of 24 frames, and the position of the red ball is move
 
 <img src="screenshots/easeInQuad.gif" />
 
-#### Ease In Quad
+#### Ease Out Quad
 
 ## Requirements
 
