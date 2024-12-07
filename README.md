@@ -1,10 +1,11 @@
 # EaseSprite
 
 #### An Aseprite extension
-*current release: [v1.0.0](https://sudo-whoami.itch.io/EaseSprite)*
+*current release: [v1.1.0](https://sudo-whoami.itch.io/EaseSprite)*
 
 ## Latest Changes
-- Initial release
+- FIX [ISSUE #1](https://github.com/JRiggles/EaseSprite/issues/1): Easing functions now set frame times correctly - thanks to user @keerifox for catching this (math isn't my area)
+- FEATURE: Improved tag behavior - easing tags are now replaced if you apply a different easing function to a set of frames that already has one applied.
 
 ##
 This [Aseprite](https://aseprite.org) extension allows you to apply "easing" functions to the timing of animation frames
