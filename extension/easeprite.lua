@@ -16,6 +16,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 local preferences = {} -- create a global table to store extension preferences
 local easings = require("easings")
+-- local easings = require("inverseEasings")
 
 local function getTagByName(sprite, tagName)
   for _, tag in ipairs(sprite.tags) do
@@ -62,6 +63,24 @@ local function getSelectedFrames(sprite, data)
     local first = selectedTag.fromFrame.frameNumber
     local last = selectedTag.toFrame.frameNumber
     return getFramesByRange(sprite, first, last)
+  end
+end
+
+-- check if a tag was created by the script (matches an easing function name)
+local function isEasingTag(tag)
+  return easings[tag.name] ~= nil
+end
+
+-- remove existing easing tags from the selected frame range
+local function removeEasingTags(sprite, fromFrame, toFrame)
+  local tagsToRemove = {}
+  for _, tag in ipairs(sprite.tags) do
+    if isEasingTag(tag) and tag.fromFrame.frameNumber >= fromFrame and tag.toFrame.frameNumber <= toFrame then
+      table.insert(tagsToRemove, tag)
+    end
+  end
+  for _, tag in ipairs(tagsToRemove) do
+    sprite:deleteTag(tag)
   end
 end
 
@@ -150,25 +169,56 @@ local function main()
       local selectedFrameCount = #easingFrames
 
       if data.addEasingTag then
-        local easingTag = sprite:newTag(
-          easingFrames[1].frameNumber,
-          easingFrames[selectedFrameCount].frameNumber
-        )
+        local firstFrameNumber = easingFrames[1].frameNumber
+        local lastFrameNumber = easingFrames[selectedFrameCount].frameNumber
+        -- remove any existing easing tags in the selected frame range
+        removeEasingTags(sprite, firstFrameNumber, lastFrameNumber)
+        -- create the new easing tag
+        local easingTag = sprite:newTag(firstFrameNumber, lastFrameNumber)
         easingTag.name = funcName
-        easingTag.color = Color{ r=128, g=128, b=255, a=255 }
+        easingTag.color = Color{ r = 128, g = 128, b = 255, a = 255 }
       end
 
-      local previousFrameDuration = 0  -- initial 'previous duration' (0 for 1st frame)
+      local function invertEasing(easingFunc, x, tolerance)  -- express 'x' in terms of 't'
+        -- handle linear (no) easing explicitly for precision
+        if easingFunc == easings.linear then
+          return x
+        end
+
+        -- set binary search bounds
+        local low, high = 0, 1
+        local mid, fx
+        tolerance = tolerance or 1e-6  -- default tolerance
+
+        -- binary search for the t value such that easingFunc(t) is *close* to x
+        while high - low > tolerance do
+          mid = (low + high) / 2
+          fx = easingFunc(mid)
+          if fx < x then
+            low = mid
+          else
+            high = mid
+          end
+        end
+        return (low + high) / 2
+      end
+
+      -- TODO: remove existing easing tag from selected frames when applying a new easing function
+      local t0 = 0  -- initial 'previous duration' (0 for 1st frame)
       for i, frame in ipairs(easingFrames) do
-        -- get the portion of the animation frames that has been iterated so far
-        local a = (i / selectedFrameCount)
-        -- calculate the easing value
-        local dt = math.ceil(easings[funcName](a) * data.duration)
-        -- calculate and set the current frame duration
-        local fd = (dt - previousFrameDuration) / 1000
+        -- get the absolute progress of the animation in steps from 0 to 1
+        local x = i / selectedFrameCount
+        -- calculate the easing value for the given function
+        -- (inverted to express absolute progress 'x' in terms of time 't')
+        local t = invertEasing(easings[funcName], x)
+        -- dt is the calculated easing value minus the previous easing value
+        local dt = t - t0
+        -- set the duration of the current frame in mS
+        local fd = (dt * data.duration) / 1000
         frame.duration = fd
-        -- store last calculated dt as 'previous duration'
-        previousFrameDuration = dt
+        -- store last calculated t as previous duration
+        t0 = t
+        print("x:"..x.."      t:"..t.."      dt:"..dt.."      fd:"..fd)
       end
     end
   )
