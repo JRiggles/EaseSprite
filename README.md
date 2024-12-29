@@ -3,6 +3,8 @@
 #### An Aseprite extension
 *current release: [v1.1.0](https://sudo-whoami.itch.io/EaseSprite)*
 
+<img src="./screenshots/easeInQuad.gif" />
+
 ## Latest Changes
 - FIX [ISSUE #1](https://github.com/JRiggles/EaseSprite/issues/1): Easing functions now set frame times correctly - thanks to user @keerifox for catching this (math isn't my area)
 - FEATURE: Improved tag behavior - easing tags are now replaced if you apply a different easing function to a set of frames that already has one applied.
